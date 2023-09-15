@@ -1,23 +1,26 @@
-<script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
+<script lang="ts">
+import { ref } from 'vue'
+export default {
+  setup() {
+    const listItems = ref([])
+    return { listItems }
+  }
+}
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
+  <div class="flex justify-center items-center">
+    <div class="w-96 border rounded-2xl flex flex-col justify-center items-center pb-8 pt-3 gap-3">
+      <div class="flex flex-col w-full justify-center items-center">
+        <span>Todo</span>
+        <span>Add your daily things here!</span>
+      </div>
+      <textarea class="border w-72 rounded pl-2"></textarea>
+      <button class="border rounded px-2">Add</button>
     </div>
-  </header>
+  </div>
 
-  <RouterView />
+  <div class="border rounded-2xl ml-10"></div>
 </template>
 
 <style scoped>
