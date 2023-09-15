@@ -1,11 +1,12 @@
-<script lang="ts">
+<script setup lang="ts">
 import { ref } from 'vue'
-export default {
-  setup() {
-    const listItems = ref([])
-    return { listItems }
-  }
+
+const listItems = ref([])
+function onInputChange(event) {
+  listItems.value.push(event.target.value)
 }
+function addItem() {}
+// return { listItems, addItem, onInputChange }
 </script>
 
 <template>
@@ -15,12 +16,16 @@ export default {
         <span>Todo</span>
         <span>Add your daily things here!</span>
       </div>
-      <textarea class="border w-72 rounded pl-2"></textarea>
-      <button class="border rounded px-2">Add</button>
+      <textarea class="border w-72 rounded pl-2" @change="onInputChange"></textarea>
+      <button class="border rounded px-2" @click="addItem">Add</button>
     </div>
   </div>
 
-  <div class="border rounded-2xl ml-10"></div>
+  <div class="border rounded-2xl ml-10">
+    <ul>
+      <li v-for="item in listItems" :key="item">{{ item }}</li>
+    </ul>
+  </div>
 </template>
 
 <style scoped>
